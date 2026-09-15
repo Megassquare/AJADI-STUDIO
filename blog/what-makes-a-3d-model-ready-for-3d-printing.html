@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Makes a 3D Model Ready for 3D Printing? | AJADI STUDIO</title>
+  <meta name="description" content="Technical guide explaining non-manifold geometry, wall thickness minimums, watertight solid rules, and tolerances for 3D printing." />
+  <link rel="canonical" href="https://ajadistudio.com/blog/what-makes-a-3d-model-ready-for-3d-printing.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../blog.css">
+
+  <!-- Technical Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "What Makes a 3D Model Ready for 3D Printing?",
+    "description": "A technical breakdown of manifold geometry, wall thickness thresholds, and mesh tolerances for additive manufacturing.",
+    "author": {
+      "@type": "Organization",
+      "name": "AJADI STUDIO"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AJADI STUDIO",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://res.cloudinary.com/atjvexrz/image/upload/v1789138598/AJADI_STUDIO_LOGO.png"
+      }
+    },
+    "datePublished": "2024-06-14"
+  }
+  </script>
+</head>
+<body class="blog-body">
+  <header class="site-header scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-link">
+        <img src="https://res.cloudinary.com/atjvexrz/image/upload/v1789138598/AJADI_STUDIO_LOGO.png" alt="AJADI STUDIO Logo" class="brand-logo-img" />
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html#work" class="nav-link">Work</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../blog.html" class="nav-link active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Start a Project</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="article-header">
+        <div class="container article-header-inner">
+          <nav class="article-breadcrumbs" aria-label="Breadcrumbs">
+            <a href="../index.html">Home</a> <span>/</span>
+            <a href="../blog.html">Blog</a> <span>/</span>
+            <span>3D Printing</span>
+          </nav>
+          <h1 class="article-main-title">What Makes a 3D Model Ready for 3D Printing?</h1>
+          <div class="article-meta-bar">
+            <span>Published: June 14, 2024</span>
+            <span>•</span>
+            <span>7 min read</span>
+            <span>•</span>
+            <span class="meta-category">3D Printing</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container article-wrapper">
+        <div class="article-content">
+          <p>A frequent point of friction between 3D design and physical fabrication is the assumption that any model that renders properly on screen can be fed directly into a slicer. In digital rendering, surfaces can be infinitely thin, self-intersecting, or non-contiguous without causing graphical artifacts. In physical 3D printing, however, slicers interpret mathematical volumes as real boundary limits.</p>
+
+          <h2>1. The Manifold (Watertight) Requirement</h2>
+          <p>The first prerequisite for any print-ready model is that it must be <strong>manifold</strong>. A manifold mesh represents an enclosed, watertight solid. In geometric terms, every single edge in the mesh must connect to exactly two faces—never one (which creates an open boundary), and never three or more (which creates non-manifold interior walls).</p>
+          <p>If a mesh has open edges, the slicing engine cannot calculate where the interior solid begins and where the external void ends. This typically results in omitted layers, missing infill paths, or complete slicer rejection.</p>
+
+          <div class="technical-box">
+            <div class="technical-box-title">Rule of Thumb: Manifold Verification</div>
+            <p>Imagine filling the model with water. If there is a single hole or zero-thickness face where liquid could leak out, the mesh is non-manifold and will fail or exhibit erratic toolpaths during slicing.</p>
+          </div>
+
+          <h2>2. Minimum Wall Thickness and Structural Integrity</h2>
+          <p>Digital models frequently incorporate paper-thin features such as knife edges, antennae, or fabric fringes. When scaled down to printing dimensions, these elements must still exceed the minimum nozzle extrusion diameter for FDM (Fused Deposition Modeling) or the minimum cure resolution for resin SLA/DLP machines.</p>
+          <ul>
+            <li><strong>FDM Guidelines:</strong> Walls should generally be at least 1.2 mm to 1.6 mm thick (equivalent to 3–4 continuous perimeter perimeters with a standard 0.4 mm nozzle) to prevent brittle delamination.</li>
+            <li><strong>Resin (SLA) Guidelines:</strong> While resin can resolve details down to 0.4 mm, unsupported structural walls should remain at or above 1.0 mm to prevent warping during cleaning and UV post-curing.</li>
+          </ul>
+
+          <h2>3. Unified Booleans vs. Intersecting Shells</h2>
+          <p>In rendering pipelines, it is standard practice to build an object out of separate overlapping pieces (for example, floating bolts placed across an armor plate). However, a slicer often perceives intersecting internal shells as voids, cutting holes directly through your part.</p>
+          <p>Before exporting to STL or 3MF, all overlapping geometries should be combined into a single continuous boundary volume using boolean union operations, followed by a remeshing or retopology pass to weld coincident vertices.</p>
+
+          <div class="article-callout">
+            <strong>Key takeaway:</strong>
+            A model is ready for 3D printing only when it constitutes a single watertight shell with uniform outward-facing normals, non-zero wall thickness, and deliberate clearance tolerances built into interlocking sections.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="related-section">
+      <div class="container">
+        <h2 class="section-title" style="font-size: 1.8rem;">Related Articles</h2>
+        <div class="related-grid">
+          <article class="article-card">
+            <div class="card-body">
+              <span class="meta-category">3D Printing</span>
+              <h3 class="card-title" style="margin-top: 8px;"><a href="common-problems-that-can-ruin-a-3d-printable-model.html">Common Problems That Can Ruin a 3D Printable Model</a></h3>
+              <p class="card-summary">Examine inverted face normals, hollow resin cavities, and keyway tolerances.</p>
+            </div>
+          </article>
+          <article class="article-card">
+            <div class="card-body">
+              <span class="meta-category">Cosplay</span>
+              <h3 class="card-title" style="margin-top: 8px;"><a href="3d-printing-vs-foam-for-cosplay-armor.html">3D Printing vs Foam for Cosplay Armor</a></h3>
+              <p class="card-summary">Structural comparison of weight, finishing time, and durability.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy">© AJADI STUDIO. Direct inquiries: <a href="mailto:ajadistudioo@gmail.com" class="footer-email-link">ajadistudioo@gmail.com</a></span>
+      <a href="../blog.html" class="back-to-top">Back to Journal</a>
+    </div>
+  </footer>
+</body>
+</html>

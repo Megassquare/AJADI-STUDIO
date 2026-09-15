@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I Approach 3D Car Modeling in Blender | AJADI STUDIO</title>
+  <meta name="description" content="A detailed breakdown of automotive modeling in Blender using subdivision surface, edge flow control, and reflection highlight preservation." />
+  <link rel="canonical" href="https://ajadistudio.com/blog/how-i-approach-3d-car-modeling-in-blender.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../blog.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "How I Approach 3D Car Modeling in Blender",
+    "description": "Techniques for modeling precision car bodies using subdivision surfaces, shrinkwrap modifiers, and reflection control.",
+    "author": { "@type": "Organization", "name": "AJADI STUDIO" },
+    "datePublished": "2024-05-28"
+  }
+  </script>
+</head>
+<body class="blog-body">
+  <header class="site-header scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-link">
+        <img src="https://res.cloudinary.com/atjvexrz/image/upload/v1789138598/AJADI_STUDIO_LOGO.png" alt="AJADI STUDIO Logo" class="brand-logo-img" />
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html#work" class="nav-link">Work</a></li>
+        <li><a href="../blog.html" class="nav-link active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Start a Project</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="article-header">
+        <div class="container article-header-inner">
+          <nav class="article-breadcrumbs">
+            <a href="../index.html">Home</a> <span>/</span>
+            <a href="../blog.html">Blog</a> <span>/</span>
+            <span>Blender</span>
+          </nav>
+          <h1 class="article-main-title">How I Approach 3D Car Modeling in Blender</h1>
+          <div class="article-meta-bar">
+            <span>Published: May 28, 2024</span>
+            <span>•</span>
+            <span>9 min read</span>
+            <span>•</span>
+            <span class="meta-category">Blender</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container article-wrapper">
+        <div class="article-content">
+          <p>Car modeling is widely recognized as one of the most demanding disciplines in 3D hard-surface modeling. Unlike organic forms or sci-fi props, automotive body panels are defined by continuous class-A curves and highly reflective surfaces. Any irregularity, pinched vertex, or uneven edge distribution immediately distorts reflection lines.</p>
+
+          <h2>1. Establishing the Base Guide Mesh</h2>
+          <p>One of the most common mistakes is cutting out door handles, vents, and panel gaps directly on the primary subdividing geometry. Doing so creates pole vertices that distort the surrounding curved surfaces.</p>
+          <p>Instead, the workflow begins with a continuous, unbroken <strong>guide cage</strong> that defines the entire curvature of the vehicle across panels. This mesh contains no panel gaps, no handles, and no headlights. Its sole objective is to establish flawless curvature across the hood, doors, and quarter panels.</p>
+
+          <h2>2. The Shrinkwrap Modifier Technique</h2>
+          <p>Once the guide cage is established and smoothed:</p>
+          <ul>
+            <li>Duplicate the panels and separate them into distinct objects (doors, fenders, hood).</li>
+            <li>Cut your panel gaps, wheel arches, and recesses into these individual panels.</li>
+            <li>Apply a <strong>Shrinkwrap Modifier</strong> to each panel, targeting the original uncut guide mesh using vertex groups.</li>
+          </ul>
+          <p>This locks the surface normals of the detailed panels to the curvature of the original guide body. Even when dense support loops are added around door edges, the reflections across the main body remain smooth and undistorted.</p>
+
+          <h2>3. Evaluating Highlights with MatCaps</h2>
+          <p>Do not wait until the final rendering stage to check your bodywork. Throughout the modeling process, switch Blender's viewport shading to a high-contrast horizontal striped MatCap (zebra stripes). Move the camera dynamically around wheel arches and compound curves. If the zebra lines buckle, kink, or pinch, your vertices are unevenly spaced.</p>
+
+          <div class="article-callout">
+            <strong>Key Takeaway:</strong>
+            Clean automotive modeling is not about adding more geometry—it is about establishing consistent edge flow and utilizing a guide mesh to preserve unbroken reflections across panel seams.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy">© AJADI STUDIO. Inquiries: <a href="mailto:ajadistudioo@gmail.com" class="footer-email-link">ajadistudioo@gmail.com</a></span>
+      <a href="../blog.html" class="back-to-top">Back to Journal</a>
+    </div>
+  </footer>
+</body>
+</html>

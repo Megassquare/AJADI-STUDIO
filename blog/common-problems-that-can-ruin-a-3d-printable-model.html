@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Problems That Can Ruin a 3D Printable Model | AJADI STUDIO</title>
+  <meta name="description" content="Technical guide addressing inverted face normals, zero-thickness boundaries, and tolerance clearance errors in 3D printable files." />
+  <link rel="canonical" href="https://ajadistudio.com/blog/common-problems-that-can-ruin-a-3d-printable-model.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../blog.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Common Problems That Can Ruin a 3D Printable Model",
+    "description": "Common topological and geometric flaws that prevent models from printing successfully.",
+    "author": { "@type": "Organization", "name": "AJADI STUDIO" },
+    "datePublished": "2024-04-05"
+  }
+  </script>
+</head>
+<body class="blog-body">
+  <header class="site-header scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-link">
+        <img src="https://res.cloudinary.com/atjvexrz/image/upload/v1789138598/AJADI_STUDIO_LOGO.png" alt="AJADI STUDIO Logo" class="brand-logo-img" />
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html#work" class="nav-link">Work</a></li>
+        <li><a href="../blog.html" class="nav-link active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Start a Project</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="article-header">
+        <div class="container article-header-inner">
+          <nav class="article-breadcrumbs">
+            <a href="../index.html">Home</a> <span>/</span>
+            <a href="../blog.html">Blog</a> <span>/</span>
+            <span>3D Printing</span>
+          </nav>
+          <h1 class="article-main-title">Common Problems That Can Ruin a 3D Printable Model</h1>
+          <div class="article-meta-bar">
+            <span>Published: April 05, 2024</span>
+            <span>•</span>
+            <span>7 min read</span>
+            <span>•</span>
+            <span class="meta-category">3D Printing</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container article-wrapper">
+        <div class="article-content">
+          <p>Even an aesthetically detailed 3D model can fail when processed by a slicer. Most failures stem from a few recurring geometric issues that are easy to overlook inside a 3D viewport.</p>
+
+          <h2>1. Inverted Face Normals</h2>
+          <p>Every polygonal face possesses a direction vector (normal) defining which side is front (external) and which is back (internal). When normals are inverted or mixed, the slicer interprets solid sections as empty voids. In Cura, PrusaSlicer, or Bambu Studio, this causes entire layer sections to vanish or generate erratic support pillars inside the model.</p>
+
+          <h2>2. Zero-Clearance Mechanical Keys</h2>
+          <p>When modeling interlocking keys or alignment pins for multi-part models, modelers often design keys with identical dimensions (for example, a 10.0 mm peg into a 10.0 mm slot). In the physical world, thermal expansion, layer stepping, and extrusion flow will prevent these parts from fitting together without heavy grinding.</p>
+          <p>Always integrate an intentional tolerance gap: between <strong>0.2 mm and 0.35 mm</strong> on each mating side for standard FDM printing.</p>
+
+          <h2>3. Trapped Resin Cavities Without Drainage</h2>
+          <p>When hollowing models for resin printing to save material, modelers must ensure that internal hollow chambers include adequate escape vents near the base. A sealed internal void creates a suction-cup effect during printing, peeling parts off the build plate and permanently trapping uncured liquid resin inside.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy">© AJADI STUDIO. Inquiries: <a href="mailto:ajadistudioo@gmail.com" class="footer-email-link">ajadistudioo@gmail.com</a></span>
+      <a href="../blog.html" class="back-to-top">Back to Journal</a>
+    </div>
+  </footer>
+</body>
+</html>
