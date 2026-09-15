@@ -37,15 +37,14 @@
         </svg>
       </button>
 
-      <!-- In index.html: find this list and add the Blog <li> -->
-<ul class="nav-menu" id="navMenu">
-  <li><a href="#work" class="nav-link">Work</a></li>
-  <li><a href="#services" class="nav-link">Services</a></li>
-  <li><a href="#process" class="nav-link">Process</a></li>
-  <li><a href="#about" class="nav-link">About</a></li>
-  <li><a href="blog.html" class="nav-link">Blog</a></li>
-  <li><a href="#contact" class="nav-cta">Start a Project</a></li>
-</ul>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#process" class="nav-link">Process</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+      </ul>
     </div>
   </header>
 
@@ -477,10 +476,20 @@
                 </div>
               </div>
 
-              <!-- Social Links Area (Only populates if URLs are defined in script.js) -->
-              <div class="social-wrapper" id="contactSocialContainer">
-                <div class="social-label">Connect:</div>
-                <div class="social-links-list" id="contactSocialLinks"></div>
+              <!-- Official Social Profiles (Contact Section) -->
+              <div class="social-wrapper active" id="contactSocialContainer">
+                <div class="social-label">Official Profiles:</div>
+                <div class="social-links-list" id="contactSocialLinks">
+                  <a href="https://www.instagram.com/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  </a>
+                  <a href="https://www.behance.net/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on Behance">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 11.8c.8-.3 1.4-.9 1.4-1.9 0-1.8-1.4-2.4-3.1-2.4H1.5v8.9h5.1c2 0 3.5-.8 3.5-2.7 0-1.1-.7-1.7-1.9-1.9zm-3.8-2.6h2c.8 0 1.4.2 1.4.9 0 .8-.6 1-1.4 1h-2v-1.9zm2.2 5H4.4v-2.1h2.2c.9 0 1.6.2 1.6 1.1 0 .9-.7 1-1.6 1zm11.7-2.6c0-2.3-1.6-3.8-3.9-3.8-2.4 0-4.1 1.7-4.1 4s1.6 4.1 4.2 4.1c1.9 0 3.2-.9 3.7-2.2h-2.1c-.3.4-1 .7-1.6.7-1.1 0-1.8-.7-2-1.8h5.8zm-5.8-1.1c.2-.9.8-1.5 1.9-1.5s1.7.6 1.8 1.5h-3.7zM14 6.5h4v1.2h-4z"/></svg>
+                  </a>
+                  <a href="https://www.artstation.com/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on ArtStation">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.504a2.41 2.41 0 0 0 2.086 1.205h12.186l-2.5-4.709H0zm8.016-5.467l3.99-6.906 3.99 6.906H8.016zm13.987 4.709a2.404 2.404 0 0 0-.256-1.218L16.03 5.485a2.41 2.41 0 0 0-2.086-1.205l5.72 10.368 2.339 3.076z"/></svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -488,7 +497,6 @@
           <!-- Inquiry Form -->
           <div class="inquiry-form-wrapper">
             <form id="inquiryForm" novalidate>
-              <!-- Anti-spam honeypot (hidden from real users) -->
               <div class="form-honeypot" aria-hidden="true">
                 <label for="form_website_hp">Leave this field empty</label>
                 <input type="text" id="form_website_hp" name="website_hp" tabindex="-1" autocomplete="off" />
@@ -616,8 +624,18 @@
         <span class="footer-copy">© <span id="currentYear"></span> AJADI STUDIO. All rights reserved. Direct inquiries: <a href="mailto:ajadistudioo@gmail.com" class="footer-email-link">ajadistudioo@gmail.com</a></span>
       </div>
 
-      <!-- Social Links (Footer) -->
-      <div class="social-links-list" id="footerSocialLinks"></div>
+      <!-- Official Social Profiles (Footer) -->
+      <div class="social-links-list" id="footerSocialLinks">
+        <a href="https://www.instagram.com/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://www.behance.net/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on Behance">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 11.8c.8-.3 1.4-.9 1.4-1.9 0-1.8-1.4-2.4-3.1-2.4H1.5v8.9h5.1c2 0 3.5-.8 3.5-2.7 0-1.1-.7-1.7-1.9-1.9zm-3.8-2.6h2c.8 0 1.4.2 1.4.9 0 .8-.6 1-1.4 1h-2v-1.9zm2.2 5H4.4v-2.1h2.2c.9 0 1.6.2 1.6 1.1 0 .9-.7 1-1.6 1zm11.7-2.6c0-2.3-1.6-3.8-3.9-3.8-2.4 0-4.1 1.7-4.1 4s1.6 4.1 4.2 4.1c1.9 0 3.2-.9 3.7-2.2h-2.1c-.3.4-1 .7-1.6.7-1.1 0-1.8-.7-2-1.8h5.8zm-5.8-1.1c.2-.9.8-1.5 1.9-1.5s1.7.6 1.8 1.5h-3.7zM14 6.5h4v1.2h-4z"/></svg>
+        </a>
+        <a href="https://www.artstation.com/ajadistudio" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="AJADI STUDIO on ArtStation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.504a2.41 2.41 0 0 0 2.086 1.205h12.186l-2.5-4.709H0zm8.016-5.467l3.99-6.906 3.99 6.906H8.016zm13.987 4.709a2.404 2.404 0 0 0-.256-1.218L16.03 5.485a2.41 2.41 0 0 0-2.086-1.205l5.72 10.368 2.339 3.076z"/></svg>
+        </a>
+      </div>
 
       <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top of page">
         <span>Back to top</span>
