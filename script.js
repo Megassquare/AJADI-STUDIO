@@ -19,7 +19,7 @@ const SOCIAL_LINKS = {
 const SOCIAL_ICONS = {
   instagram: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
   behance: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 11.8c.8-.3 1.4-.9 1.4-1.9 0-1.8-1.4-2.4-3.1-2.4H1.5v8.9h5.1c2 0 3.5-.8 3.5-2.7 0-1.1-.7-1.7-1.9-1.9zm-3.8-2.6h2c.8 0 1.4.2 1.4.9 0 .8-.6 1-1.4 1h-2v-1.9zm2.2 5H4.4v-2.1h2.2c.9 0 1.6.2 1.6 1.1 0 .9-.7 1-1.6 1zm11.7-2.6c0-2.3-1.6-3.8-3.9-3.8-2.4 0-4.1 1.7-4.1 4s1.6 4.1 4.2 4.1c1.9 0 3.2-.9 3.7-2.2h-2.1c-.3.4-1 .7-1.6.7-1.1 0-1.8-.7-2-1.8h5.8zm-5.8-1.1c.2-.9.8-1.5 1.9-1.5s1.7.6 1.8 1.5h-3.7zM14 6.5h4v1.2h-4z"/></svg>`,
-  artstation: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.504a2.41 2.41 0 0 0 2.086 1.205h12.186l-2.5-4.709H0zm8.016-5.467l3.99-6.906 3.99 6.906H8.016zm13.987 4.709a2.404 2.404 0 0 0-.256-1.218L16.03 5.485a2.41 2.41 0 0 0-2.086-1.205l5.72 10.368 2.339 3.076z"/></svg>`
+  artstation: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>`
 };
 
 function renderSocialLinks() {
