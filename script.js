@@ -224,8 +224,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 // =============================================================
-// 5. REAL CONTACT INQUIRY SUBMISSION
-// Secure, production-ready form submission to /api/contact
+// 5. WEB3FORMS CONTACT INQUIRY SUBMISSION
+// Asynchronous submission via Web3Forms API
 // =============================================================
 const inquiryForm = document.getElementById('inquiryForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -237,67 +237,70 @@ if (inquiryForm) {
   inquiryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Reset feedback alerts
     formSuccessMsg.style.display = 'none';
     formErrorMsg.style.display = 'none';
 
-    // Anti-spam honeypot verification
-    const honeypot = document.getElementById('form_website_hp').value;
-    if (honeypot) {
-      console.warn('Bot submission rejected.');
+    // Anti-spam botcheck
+    const botcheck = inquiryForm.querySelector('input[name="botcheck"]');
+    if (botcheck && botcheck.checked) {
+      console.warn('Spam submission prevented.');
       return;
     }
 
-    const payload = {
-      name: document.getElementById('userName').value.trim(),
-      email: document.getElementById('userEmail').value.trim(),
-      projectType: document.getElementById('projectType').value,
-      description: document.getElementById('projectDesc').value.trim(),
-      referenceUrl: document.getElementById('referenceUrl').value.trim(),
-      deadline: document.getElementById('projectDeadline').value.trim(),
-      budget: document.getElementById('projectBudget').value,
-      additionalInfo: document.getElementById('additionalInfo').value.trim()
-    };
+    // Client-side required field validation
+    const name = document.getElementById('userName').value.trim();
+    const email = document.getElementById('userEmail').value.trim();
+    const projectType = document.getElementById('projectType').value;
+    const description = document.getElementById('projectDesc').value.trim();
 
-    if (!payload.name || !payload.email || !payload.projectType || !payload.description) {
+    if (!name || !email || !projectType || !description) {
       showFormError('Please fill in all required fields (Name, Email, Category, and Scope).');
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(payload.email)) {
+    if (!emailRegex.test(email)) {
       showFormError('Please enter a valid email address.');
       return;
     }
 
+    // Set UI loading state
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
     const originalBtnText = submitBtn.querySelector('.btn-text').textContent;
     submitBtn.querySelector('.btn-text').textContent = 'Sending Inquiry...';
 
     try {
-      const response = await fetch('/api/contact', {
+      const formData = new FormData(inquiryForm);
+      const jsonPayload = JSON.stringify(Object.fromEntries(formData));
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: jsonPayload
       });
 
-      const result = await response.json().catch(() => ({}));
+      const result = await response.json();
 
-      if (response.ok && result.success) {
+      if (response.status === 200 && result.success) {
+        // Genuine success from Web3Forms
         formSuccessMsg.style.display = 'block';
         inquiryForm.reset();
         formSuccessMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
-        const errorDetail = result.message || 'We were unable to deliver your brief. Please try again or email us directly.';
-        showFormError(errorDetail);
+        // Web3Forms returned an error
+        const errorMessage = result.message || 'Unable to deliver message through Web3Forms. Please email us directly.';
+        showFormError(errorMessage);
       }
     } catch (err) {
-      console.error('Submission network failure:', err);
-      showFormError('Network connection issue. Please verify your connection or email your requirements directly to ajadistudioo@gmail.com.');
+      console.error('Web3Forms fetch error:', err);
+      showFormError('Network connection issue. Please check your connection or email ajadistudioo@gmail.com.');
     } finally {
+      // Restore button state
       submitBtn.disabled = false;
       submitBtn.classList.remove('loading');
       submitBtn.querySelector('.btn-text').textContent = originalBtnText;

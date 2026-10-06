@@ -498,11 +498,16 @@
 
           <!-- Inquiry Form -->
           <div class="inquiry-form-wrapper">
-            <form id="inquiryForm" novalidate>
-              <div class="form-honeypot" aria-hidden="true">
-                <label for="form_website_hp">Leave this field empty</label>
-                <input type="text" id="form_website_hp" name="website_hp" tabindex="-1" autocomplete="off" />
-              </div>
+<form id="inquiryForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <!-- Web3Forms Access Key -->
+              <input type="hidden" name="access_key" value="fdf4a79f-cefb-4d4f-bb22-4ba9150a4a75" />
+
+              <!-- Email Subject & Studio Sender Attribution -->
+              <input type="hidden" name="subject" value="New 3D Project Inquiry | Ajadi Studio" />
+              <input type="hidden" name="from_name" value="Ajadi Studio Website" />
+
+              <!-- Web3Forms Anti-Spam Honeypot (hidden from human visitors) -->
+              <input type="checkbox" name="botcheck" class="form-honeypot" style="display: none;" tabindex="-1" autocomplete="off" />
 
               <div class="form-grid">
                 <div class="form-group">
@@ -566,9 +571,9 @@
                 </div>
               </div>
 
-              <!-- Real Response Feedback Messages -->
+              <!-- Feedback Messages -->
               <div class="form-feedback form-feedback-success" id="formSuccessMsg" role="alert">
-                <strong>Inquiry Sent Successfully.</strong> Thank you. Your message has been routed directly to our inbox at <code>ajadistudioo@gmail.com</code>. We will review your project brief and get back to you shortly.
+                <strong>Inquiry Sent Successfully.</strong> Thank you. Your message has been sent to our inbox. We will review your project brief and get back to you shortly.
               </div>
 
               <div class="form-feedback form-feedback-error" id="formErrorMsg" role="alert">
