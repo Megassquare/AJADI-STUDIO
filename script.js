@@ -13,13 +13,17 @@
 const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/ajadistudio",
   behance: "https://www.behance.net/ajadistudio",
-  artstation: "https://www.artstation.com/ajadistudio"
+  artstation: "https://www.artstation.com/ajadistudio",
+  cults3d: "https://cults3d.com/en/users/ajadistudio/3d-models",
+  facebook: "https://web.facebook.com/profile.php?id=61595389851234"
 };
 
 const SOCIAL_ICONS = {
   instagram: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
   behance: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 11.8c.8-.3 1.4-.9 1.4-1.9 0-1.8-1.4-2.4-3.1-2.4H1.5v8.9h5.1c2 0 3.5-.8 3.5-2.7 0-1.1-.7-1.7-1.9-1.9zm-3.8-2.6h2c.8 0 1.4.2 1.4.9 0 .8-.6 1-1.4 1h-2v-1.9zm2.2 5H4.4v-2.1h2.2c.9 0 1.6.2 1.6 1.1 0 .9-.7 1-1.6 1zm11.7-2.6c0-2.3-1.6-3.8-3.9-3.8-2.4 0-4.1 1.7-4.1 4s1.6 4.1 4.2 4.1c1.9 0 3.2-.9 3.7-2.2h-2.1c-.3.4-1 .7-1.6.7-1.1 0-1.8-.7-2-1.8h5.8zm-5.8-1.1c.2-.9.8-1.5 1.9-1.5s1.7.6 1.8 1.5h-3.7zM14 6.5h4v1.2h-4z"/></svg>`,
-  artstation: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>`
+  artstation: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>`,
+  cults3d: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2L4 6.8v10.4l8 4.6 8-4.6V6.8L12 2.2zm-1 2.2v6.1L5.5 7.4 11 4.4zm2 0l5.5 3-5.5 3.1V4.4zM5 8.9l5.5 3.1v6.3L5 15.2V8.9zm14 6.3l-5.5 3.1V12l5.5-3.1v6.3z"/></svg>`,
+  facebook: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`
 };
 
 function renderSocialLinks() {
@@ -34,9 +38,16 @@ function renderSocialLinks() {
     return;
   }
 
-  // Clear existing children to prevent duplicate appends
   if (contactList) contactList.innerHTML = '';
   if (footerList) footerList.innerHTML = '';
+
+  const labelMap = {
+    instagram: 'Instagram',
+    behance: 'Behance',
+    artstation: 'ArtStation',
+    cults3d: 'Cults3D',
+    facebook: 'Facebook'
+  };
 
   platforms.forEach(([platform, url]) => {
     const linkElem = document.createElement('a');
@@ -44,10 +55,7 @@ function renderSocialLinks() {
     linkElem.target = '_blank';
     linkElem.rel = 'noopener noreferrer';
     linkElem.className = 'social-icon-btn';
-    
-    // Capitalize platform name for accessible labeling
-    const platformLabel = platform === 'artstation' ? 'ArtStation' : (platform.charAt(0).toUpperCase() + platform.slice(1));
-    linkElem.setAttribute('aria-label', `AJADI STUDIO on ${platformLabel}`);
+    linkElem.setAttribute('aria-label', `AJADI STUDIO on ${labelMap[platform] || platform}`);
     linkElem.innerHTML = SOCIAL_ICONS[platform] || '';
 
     if (contactList) contactList.appendChild(linkElem.cloneNode(true));
